@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema(
         required: true,
         default: false,
       },
-      token:{type:String, required:true},
+      token:{type:String},
       bio:{type:String, default:'Hey, I am using whatsapp!'}
     },
     { timestaps: true }
