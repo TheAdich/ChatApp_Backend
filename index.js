@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL)
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ['http://localhost:3000','https://chat-app-frontend-vercel.vercel.app'],
+    origin: ['http://localhost:3000','https://chat-app-frontend-rho-jet.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }))
@@ -41,7 +41,7 @@ app.get('/',(req,res)=> res.send('Hello!'));
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:3000','https://chat-app-frontend-vercel.vercel.app'],
+        origin: ['http://localhost:3000','https://chat-app-frontend-rho-jet.vercel.app'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true,
     }
