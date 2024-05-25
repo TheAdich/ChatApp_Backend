@@ -9,7 +9,7 @@ const authMiddleware = require('./middlewares/authToken');
 const cookieParser = require("cookie-parser")
 const cors = require('cors');
 const app = express();
-//const port = 5000;
+const port = process.env.PORT || 10000;
 //const dbUri = 'mongodb+srv://testing_node:test1234@cluster0.jriry7x.mongodb.net/Chatify?retryWrites=true&w=majority&appName=Cluster0'
 
 require('dotenv').config()
@@ -47,7 +47,7 @@ const io = new Server(server, {
     }
 })
 
-server.listen(process.env.PORT, () => {
+server.listen(port, () => {
     console.log('Server is running!');
 })
 
