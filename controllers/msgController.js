@@ -13,10 +13,11 @@ const allMessages=async(req,res)=>{
 
 const postMessages = async(req, res)=>{
 
-    const {id,content}=req.body;
+    const {id,content,msgType}=req.body;
     let messages={
         content:content,
-        sender:req.user._id
+        sender:req.user._id,
+        msgType:msgType
     }
     try{
         const newMsg=await Message.create(messages);

@@ -5,6 +5,7 @@ const messageSchema = mongoose.Schema(
     sender: { type: String, ref: "User" },
     content: { type: String},
     chat: { type: String, ref: "Chat" },
+    msgType:{type:String, default:'text'},
   },
   { timestamps: true }
 );
