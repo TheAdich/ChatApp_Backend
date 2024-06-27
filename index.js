@@ -5,6 +5,7 @@ const userRouter = require('./routers/userRouter');
 const { createServer } = require('http');
 const chatRouter = require('./routers/chatRouter');
 const msgRouter = require('./routers/msgRouter');
+const paymentRouter=require('./routers/paymentRouter');
 const authMiddleware = require('./middlewares/authToken');
 const cookieParser = require("cookie-parser")
 const cors = require('cors');
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_URL)
     .catch((err) => console.log(err));
 
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(cors({
     origin: ['http://localhost:3000','https://chat-app-frontend-rho-jet.vercel.app'],
@@ -30,12 +32,16 @@ app.use(cors({
 
 //app.use('/',(req,res)=>res.send('hi'))
 app.use('/api/user', userRouter);
+app.use('/api/payment',paymentRouter);
 app.use('/api/chat', authMiddleware, chatRouter);
 app.use('/api/msg', authMiddleware, msgRouter);
 app.get('/',(req,res)=> res.send('Hello!'));
 //app.listen(port,()=>{
 //    console.log('Server is running!');
 //})
+app.get("/api/getkey", (req, res) =>
+  res.status(200).json({ key: process.env.RZ_KEY_ID})
+);
 
 //Connection for socket.io
 const server = createServer(app);

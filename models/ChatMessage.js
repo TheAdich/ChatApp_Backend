@@ -6,6 +6,7 @@ const messageSchema = mongoose.Schema(
     content: { type: String},
     chat: { type: String, ref: "Chat" },
     msgType:{type:String, default:'text'},
+    photo:{type:String, default:null},
   },
   { timestamps: true }
 );
